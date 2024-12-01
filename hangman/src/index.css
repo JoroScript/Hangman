@@ -1,0 +1,140 @@
+body{
+  height: 100vh;
+  background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 30%, #2e2e2e 40%, #99ff00 100%);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Bokor", system-ui;
+}
+.triesLeft{
+  content: "";
+  width: 100px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: white;
+  transition: width 1s ease-out
+}
+h1,h3,h4{
+  font-weight: 400;
+  text-shadow: 2px 2px 4px  green;
+  color: #FFF;
+}
+.spaced{
+  margin-inline: 0.3em;
+}
+.wordsStart{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+  text-shadow: 2px 2px 4px  green;
+  font-size: 25px;
+  color: rgb(230,230,230);
+}
+.wordsStart h5,.wordsStart h2{
+  padding: 0;
+  margin: 0;
+}
+.startCont{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.startCont h1,.startCont h4,ul{
+  padding: 0;
+  margin: 0;
+}
+ul{
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2,20px);
+  row-gap: 15px;
+  column-gap: 30px;
+}
+ul li{
+  font-size: 16px;
+}
+.startCont button,.startCont input,.loseScreen button,.gameBtnPlayAgain{
+  width: 200px;
+  border-radius: 5px;
+  font-family: "Bokor", system-ui;
+  border: none;
+
+}
+
+
+.startCont button{
+  cursor: pointer;
+  border: none;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.keysCont{
+  display: grid;
+  grid-template-columns: repeat(13,40px);
+  gap: 5px;
+  border: 3px solid white;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,250,0,0.20) 0px -12px 30px, rgba(0, 250, 0, 0.12) 0px 4px 6px, rgba(0, 250, 0, 0.17) 0px 12px 13px, rgba(0, 250, 0, 0.09) 0px -3px 5px;
+}
+
+.keysCont button{
+  background-color: rgba(239,239,239,0.9); /* Blue */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease,text-shadow 0.3s,opacity 0.3s ease,ease, transform 0.2s ease;  
+  font-family: "Barlow Condensed", sans-serif;
+  border-radius: 5px;
+  border: none;
+  font-size: 25px;
+  font-weight: 500;
+}
+.keysCont button:hover{
+  font-weight: 700;
+  background-color: #FFF; /* Darker blue */
+  transform: scale(1.08); /* Slightly enlarges the button */
+  text-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5); /* Inner shadow effect */
+  opacity: 0.9; /* Slight dimming */
+
+
+}
+
+span.letterInWord{
+  font-size: 30px;
+  color: #FFF;
+}
+span.notInWord{
+  font-size: 30px;
+  color: red;
+  text-decoration: underline;
+
+}
+.keysCont button.letterInWord{
+  color: green;
+  opacity: 0.75;
+  font-weight: 600;
+}
+.keysCont button.notInWord{
+  color: red;
+  font-weight: 600;
+  opacity: 0.75;
+}
+.loseScreen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

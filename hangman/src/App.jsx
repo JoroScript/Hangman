@@ -1,0 +1,184 @@
+import { useState } from 'react'
+import React from "react";
+import {nanoid} from "nanoid";
+import Letter from "./Letter"
+import ConfettiExplosion from 'react-confetti-explosion';
+export default function App() {
+
+  const [wordToGuess,setWordToGuess] = useState("");
+  const [guessed,setGuessed] = useState(parseInt(localStorage.getItem("guess")) || 0);
+  const [triesLeft,setTriesLeft] = useState(5);
+  const [checkEnd,setCheckEnd] = useState(false);
+  const [gameStarted,setGameStarted] = useState(false);
+  const [triedLetters,setTriedLetters] = useState([]);
+  const [inputValue,setInputValue] = useState("");
+  const [wordsArray,setWordsArray] = useState([]);
+  const [barColor,setBarColor] = useState(0)
+
+  // localStorage.setItem("guessedCount",1);
+  React.useEffect(()=>{
+    if(wordsArray.length!==0){
+      let randomWordIndex=Math.floor(Math.random()*wordsArray.length);
+      setWordToGuess(wordsArray[randomWordIndex].split("").map(letter=>{
+        if(letter!==" "){
+          return{
+            value: letter,
+            isShown: false
+          }
+        }
+        else return {
+          value: "",
+          isShown: true
+        }
+      }))
+    }
+    
+    // fetch("https://random-word-api.herokuapp.com/word")
+    // .then(res=>res.json())
+    // .then(data=>setWordToGuess(data[0].split("").map(letter=>{
+    //   return {
+    //     value: letter,
+    //     isShown: false
+    //   }
+    // })));
+    
+  },[gameStarted])
+  React.useEffect(()=>{
+    setBarColor(prevBarColor=>prevBarColor+50)
+  },[triesLeft])
+   let wordToRender=[];
+  React.useEffect(()=>{
+    if(wordToGuess){
+      if(wordToGuess.every(letter=>letter.isShown)){
+        console.log(guessed);
+        const newGuessed=guessed+1
+        localStorage.setItem("guess",newGuessed)
+        setGuessed((guessed)=>guessed+1);
+        setCheckEnd("win");
+      }
+    }
+  },[wordToGuess])
+ if(wordToGuess){
+  for(let i=0; i<wordToGuess.length; i++){
+    if(checkEnd=="lose"){
+      if(wordToGuess[i].isShown){
+        if(wordToGuess[i].value==""){
+          wordToRender.push(<span className='spaced'></span>);
+        }
+        else wordToRender.push(<span key={nanoid()} className='letterInWord'>{wordToGuess[i].value}</span>);
+    } 
+    else if(!wordToGuess[i].isShown){
+      wordToRender.push(<span className='notInWord'>{wordToGuess[i].value}</span>)
+    }
+  }
+  else if(wordToGuess[i].isShown){
+            if(wordToGuess[i].value==""){
+              wordToRender.push(<span className='spaced'></span>);
+            }
+           else wordToRender.push(wordToGuess[i].value)
+    }
+    else wordToRender.push(" _");
+
+  }
+}
+ console.log(wordToRender);
+ if(triesLeft===0 && checkEnd!=="lose"){
+  setTimeout(() => {
+       setCheckEnd("lose");
+
+  }, 1000);
+ }
+ function checkForLetter(value){
+  
+  if(!triedLetters.includes(value)){
+    if(wordToGuess.every(letter=>letter.value!==value.toLowerCase())){
+      setTriesLeft(triesLeft=>triesLeft-1);
+      
+    }
+    else setWordToGuess((oldWordToGuess)=>{
+      return oldWordToGuess.map(oldLetter=>{
+      return oldLetter.value==value.toLowerCase() ? {...oldLetter, isShown: true} : oldLetter
+      })
+    })
+    setTriedLetters(tried=>[...tried,value])
+  }
+}
+  function restartGame(){
+    setCheckEnd(false);
+    setWordsArray([]);
+    setBarColor(0);
+    setGameStarted(false);
+    setTriesLeft(5);
+    setWordToGuess("");
+    setTriedLetters([]);
+  }
+ function handleInput(event){
+  if(event.key==="Enter"){
+    setWordsArray(prev=>[...prev,inputValue]);
+    setInputValue("");
+
+  }
+ }
+  let keysArray=[];
+  for(let i=65; i<=90; i++){
+    keysArray.push(String.fromCharCode(i));
+  }
+  let keysElements=keysArray.map(letter=>{
+    return <Letter word={wordToGuess} key={nanoid()} triedLetters={triedLetters}  checkForLetter={checkForLetter}  value={letter}/>
+  })
+  function checkGameConditions(){
+    if(wordsArray.length>=5){
+      setGameStarted(true);
+    }
+  }
+   if(!gameStarted){
+
+    const words=wordsArray.map(word=>{
+      return <li key={nanoid()}>{word}</li>
+    })
+    return(
+      <div className='startCont'>
+        <h1>Choose Your Own Words and Play  a Nice Game of Hangman!</h1>
+        <h4>At Least 5 Words :)</h4>
+          <input value={inputValue} placeholder='Press Enter to Add New Word...' onKeyDown={handleInput} onChange={(e)=>setInputValue(e.target.value)}></input>
+          <button onClick={checkGameConditions}>Start Game</button>
+          <div className='wordsStart'>
+            <h2>Words</h2>
+            <ul>{words}</ul>
+            </div>
+
+      </div>
+    )
+  }
+ else if(checkEnd!=="lose") { 
+  return (
+    <>
+    <div className="container">
+    {checkEnd==="win" && <ConfettiExplosion/>}
+    <h1>Guess The Random Word/Guessed <span style={{fontWeight: "700"}}>{guessed}</span></h1>
+      <h2>{wordToRender}</h2>
+      <h3>Tries left: {triesLeft}</h3>
+      <div className={`triesLeft`} style={{width: `${triesLeft/5*50}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
+      {!checkEnd &&<div className="keysCont">
+        {keysElements}
+        </div>
+ }
+  <button className='gameBtnPlayAgain' onClick={restartGame}>Play Again</button>
+    </div>
+    </>
+  )
+  }
+  else if(checkEnd==="lose") {
+    return(
+      <div className='loseScreen'>
+      {console.log(wordToRender)}
+    {checkEnd==="lose" && <h1 style={{color: "red"}}>You Lost</h1>}
+    <div>{wordToRender}</div>
+    <button onClick={restartGame}>Play Again</button>
+
+    </div>
+  )
+}
+
+}
+
