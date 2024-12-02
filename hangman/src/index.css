@@ -84,6 +84,38 @@ ul{
   row-gap: 15px;
   column-gap: 30px;
 }
+
+.hangman{
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  filter:blur(0.5px);
+
+  border-radius: 1px;
+}
+.hangman5{
+  background-image: url(../public/5left.png)
+}
+.hangman4{
+  background-image: url(../public/4left.png)
+}
+.hangman3{
+  background-image: url(../public/3left.png)
+  
+}
+.hangman2{
+  background-image: url(../public/2left.png);
+}
+.hangman1{
+  background-image: url(../public/1left.png);
+}
+.hangman0{
+  background-image: url(../public/0left.png)
+}
+.hangMan
+.hanger{
+  display: flex;
+}
 ul::-webkit-scrollbar{
   width: 50px;
   border-radius: 2px;

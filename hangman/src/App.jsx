@@ -209,9 +209,9 @@ export default function App() {
     <div className="container">
     {checkEnd==="win" && <ConfettiExplosion/>}
     <h1>Guess The Random Word/Guessed <span style={{fontWeight: "700"}}>{guessed}</span></h1>
-      <h2 className='renderWord'>{wordToRender}</h2>
-      <h3>Tries left: {triesLeft}</h3>
-      <div className={`triesLeft`} style={{width: `${triesLeft/5*50}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
+       <h2 className='renderWord'>{wordToRender}</h2>
+       <div className={`hangman hangman${triesLeft}`}></div>
+             <div className={`triesLeft`} style={{width: `${triesLeft/5*50}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
       {!checkEnd &&<div className="keysCont">
         {keysElements}
         </div>
