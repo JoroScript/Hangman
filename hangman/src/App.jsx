@@ -174,7 +174,7 @@ export default function App() {
       <div className='startCont'>
         <h1>Choose Your Own Words and Play  a Nice Game of Hangman!</h1>
         <h4>At Least 5 Words :)</h4>
-          <input value={inputValue} placeholder='Press Enter to Add New Word...' onKeyDown={handleInput} onChange={(e)=>setInputValue(e.target.value)}></input>
+          <input value={inputValue} placeholder='Press Enter to Add Word...' onKeyDown={handleInput} onChange={(e)=>setInputValue(e.target.value)}></input>
           <button onClick={checkGameConditions}>Start Game</button>
           <div className='wordsStart'>
             <h2>Words</h2>
