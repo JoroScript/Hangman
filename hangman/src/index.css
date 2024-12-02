@@ -72,7 +72,7 @@ h1,h3,h4{
 }
 ul{
   padding-inline: 0.6em;
-  padding-block: 0.3em;
+  padding-bottom: 0.6em;
   width: 100%;
   overflow-x:auto;
   overflow-y: hidden;
@@ -97,7 +97,7 @@ ul::-webkit-scrollbar-thumb {
 ul li{
   padding: 0;
   margin-right: 0.5em;
-  font-size: 0.5em;
+  font-size: 0.8em;
   transition: transform 0.3s ease;
 }
 ul li::marker{
@@ -221,6 +221,9 @@ span.notInWord{
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
+  .wordsStart{
+    max-width: 400px;
   }
   
 }
