@@ -7,7 +7,7 @@ body{
   justify-content: center;
   align-items: center;
   font-family: "Bokor", system-ui;
-  font-size: 20px;
+  font-size: 35px;
 }
 button{
   transition: transform 0.15s ease;
@@ -21,8 +21,7 @@ button:hover{
 }
 .triesLeft{
   content: "";
-  width: 100px;
-  height: 12px;
+  height: 20px;
   border-radius: 6px;
   background-color: white;
   transition: width 1s ease-out
@@ -72,7 +71,7 @@ h1,h3,h4{
 }
 ul{
   padding-inline: 0.9em;
-  padding-bottom: 0.6em;
+  padding-bottom: 0.9em;
   width: 100%;
   overflow-x:auto;
   overflow-y: hidden;
@@ -81,13 +80,13 @@ ul{
   scroll-behavior: smooth;
   grid-auto-flow: column;
   grid-template-rows: repeat(2,20px);
-  row-gap: 15px;
-  column-gap: 30px;
+  row-gap: 0.7em;
+  column-gap: 1em;
 }
 
 .hangman{
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   background-size: cover;
   filter:blur(0.5px);
 
@@ -119,7 +118,7 @@ ul{
 ul::-webkit-scrollbar{
   width: 50px;
   border-radius: 2px;
-  height: 8px;
+  height: 15px;
 }
 ul::-webkit-scrollbar-thumb {
   width: 50px;
@@ -128,7 +127,7 @@ ul::-webkit-scrollbar-thumb {
 }
 ul li{
   padding: 0;
-  margin-right: 0.5em;
+  margin-right: 0.7em;
   font-size: 0.8em;
   transition: transform 0.3s ease;
 }
@@ -143,7 +142,7 @@ ul li:hover{
   transform: scaleX(1.07);
 }
 .startCont button,.startCont input,.loseScreen button,.gameBtnPlayAgain{
-  width: 200px;
+  width: 10em;
   border-radius: 5px;
   font-family: "Bokor", system-ui;
   border: none;
@@ -171,9 +170,10 @@ ul li:hover{
   margin: 0;
 }
 .keysCont{
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(13,40px);
-  gap: 5px;
+  grid-template-columns: repeat(13,auto);
+  gap: 10px;
   border: 3px solid white;
   font-size: 1em;
   padding: 1em;
@@ -237,7 +237,12 @@ span.notInWord{
   body{
     font-size: 16px;
   }
+  .container{
+    gap: 1.5em;
+  }
   .keysCont{
+  max-width: 360px;
+
     display: grid;
     grid-template-columns: repeat(13,auto);
     gap: 5px;
@@ -246,16 +251,15 @@ span.notInWord{
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,250,0,0.20) 0px -12px 30px, rgba(0, 250, 0, 0.12) 0px 4px 6px, rgba(0, 250, 0, 0.17) 0px 12px 13px, rgba(0, 250, 0, 0.09) 0px -3px 5px;
   }
-  .keysCont button{
-    font-size: 20px;
-  }
+  
+  
   .btnsCont{
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
   .wordsStart{
-    max-width: 400px;
+    max-width: 360px;
   }
   
 }
