@@ -8,6 +8,16 @@ body{
   align-items: center;
   font-family: "Bokor", system-ui;
 }
+button{
+  transition: transform 0.15s ease;
+}
+button:hover{
+  cursor: pointer;
+  transform: scale(1.07);
+}
+.renderWord{
+  font-size: 3em;
+}
 .triesLeft{
   content: "";
   width: 100px;
@@ -17,6 +27,7 @@ body{
   transition: width 1s ease-out
 }
 h1,h3,h4{
+  text-align: center;
   font-weight: 400;
   text-shadow: 2px 2px 4px  green;
   color: #FFF;
@@ -42,7 +53,9 @@ h1,h3,h4{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
 }
 .startCont h1,.startCont h4,ul{
   padding: 0;
@@ -58,7 +71,20 @@ ul{
   column-gap: 30px;
 }
 ul li{
+  padding: 0;
+  margin: 0;
   font-size: 16px;
+  transition: transform 0.3s ease;
+}
+ul li::marker{
+  padding: 0;
+  margin: 0;
+}
+ul li:hover{
+  cursor: pointer;
+  color: red;
+  font-weight: 700;
+  transform: scaleX(1.07);
 }
 .startCont button,.startCont input,.loseScreen button,.gameBtnPlayAgain{
   width: 200px;
@@ -79,6 +105,14 @@ ul li{
   justify-content: center;
   align-items: center;
   color: white;
+  gap: 15px;
+}
+.btnsCont{
+  display: flex;
+  gap: 15px;
+}
+.container h3,.container h2{
+  margin: 0;
 }
 .keysCont{
   display: grid;
@@ -126,9 +160,13 @@ span.notInWord{
   color: green;
   opacity: 0.75;
   font-weight: 600;
+  background-color: darkgrey;
+
 }
 .keysCont button.notInWord{
-  color: red;
+
+  background-color: darkgrey;
+  color: red; /* Blue */
   font-weight: 600;
   opacity: 0.75;
 }
@@ -137,4 +175,36 @@ span.notInWord{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  ul{
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(1,15px);
+    row-gap: 15px;
+    column-gap: 30px;
+    flex-wrap: wrap;
+  }
+  .keysCont{
+    display: grid;
+    grid-template-columns: repeat(13,auto);
+    gap: 5px;
+    border: 3px solid white;
+    padding: 0.5em;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,250,0,0.20) 0px -12px 30px, rgba(0, 250, 0, 0.12) 0px 4px 6px, rgba(0, 250, 0, 0.17) 0px 12px 13px, rgba(0, 250, 0, 0.09) 0px -3px 5px;
+  }
+  .keysCont button{
+    font-size: 20px;
+  }
+  .btnsCont{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
 }

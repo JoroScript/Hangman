@@ -12,6 +12,7 @@ export default function App() {
   const [gameStarted,setGameStarted] = useState(false);
   const [triedLetters,setTriedLetters] = useState([]);
   const [inputValue,setInputValue] = useState("");
+  const [gameReset,setGameReset] = useState(0);
   const [wordsArray,setWordsArray] = useState([]);
   const [barColor,setBarColor] = useState(0)
 
@@ -22,7 +23,7 @@ export default function App() {
       setWordToGuess(wordsArray[randomWordIndex].split("").map(letter=>{
         if(letter!==" "){
           return{
-            value: letter,
+            value: letter.toLowerCase(),
             isShown: false
           }
         }
@@ -42,7 +43,7 @@ export default function App() {
     //   }
     // })));
     
-  },[gameStarted])
+  },[gameStarted,gameReset])
   React.useEffect(()=>{
     setBarColor(prevBarColor=>prevBarColor+50)
   },[triesLeft])
@@ -86,12 +87,12 @@ export default function App() {
   setTimeout(() => {
        setCheckEnd("lose");
 
-  }, 1000);
+  }, 500);
  }
  function checkForLetter(value){
   
   if(!triedLetters.includes(value)){
-    if(wordToGuess.every(letter=>letter.value!==value.toLowerCase())){
+    if(wordToGuess.every(letter=>letter.value!==value.toLowerCase() && triesLeft)){
       setTriesLeft(triesLeft=>triesLeft-1);
       
     }
@@ -113,13 +114,46 @@ export default function App() {
     setTriedLetters([]);
   }
  function handleInput(event){
-  if(event.key==="Enter"){
-    setWordsArray(prev=>[...prev,inputValue]);
-    setInputValue("");
+  const cyrillicPattern = /[\u0400-\u04FF]/;
 
+  if(event.key==="Enter"){
+    if(inputValue.length>=3 && ![...inputValue].every(letter=>letter=="" || letter==" ") && inputValue[0]!==" " && !cyrillicPattern.test(inputValue)){
+      let correct=true;
+      for(let i=1; i<inputValue.length; i++){
+        correct = inputValue[i]==" " && inputValue[i]==inputValue[i-1] ? false : true  
+      }
+      if(correct){
+        setWordsArray(prev=>[...prev,inputValue]);
+        setInputValue("");
+      }
+    }
   }
  }
   let keysArray=[];
+  function removeWord(indexWord){
+    setWordsArray(words=>{
+     const newWords=[...words];
+     newWords.splice(indexWord,1);
+     console.log(newWords);
+     return newWords;
+    })
+  }
+  function restartSameGame(){
+    setCheckEnd(false);
+    setBarColor(0);
+    setGameReset(resets=>resets+1);
+    setTriesLeft(5);
+    setWordToGuess("");
+    setTriedLetters([]);
+  }
+  function setNewWords(){
+    setCheckEnd(false);
+    setBarColor(0);
+    setGameStarted(false);
+    setTriesLeft(5);
+    setWordToGuess("");
+    setTriedLetters([]);
+  }
   for(let i=65; i<=90; i++){
     keysArray.push(String.fromCharCode(i));
   }
@@ -133,8 +167,8 @@ export default function App() {
   }
    if(!gameStarted){
 
-    const words=wordsArray.map(word=>{
-      return <li key={nanoid()}>{word}</li>
+    const words=wordsArray.map((word,index)=>{
+      return <li onClick={()=>removeWord(index)}  key={nanoid()}>{word}</li>
     })
     return(
       <div className='startCont'>
@@ -156,14 +190,20 @@ export default function App() {
     <div className="container">
     {checkEnd==="win" && <ConfettiExplosion/>}
     <h1>Guess The Random Word/Guessed <span style={{fontWeight: "700"}}>{guessed}</span></h1>
-      <h2>{wordToRender}</h2>
+      <h2 className='renderWord'>{wordToRender}</h2>
       <h3>Tries left: {triesLeft}</h3>
       <div className={`triesLeft`} style={{width: `${triesLeft/5*50}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
       {!checkEnd &&<div className="keysCont">
         {keysElements}
         </div>
  }
-  <button className='gameBtnPlayAgain' onClick={restartGame}>Play Again</button>
+ <div className='btnsCont'>
+ <button className='gameBtnPlayAgain' onClick={restartSameGame}>Play Again</button>
+  <button className='gameBtnPlayAgain' onClick={setNewWords}>Change Existing Words</button>
+  <button className='gameBtnPlayAgain' onClick={restartGame}>New Game</button>
+ </div>
+  
+
     </div>
     </>
   )
@@ -173,8 +213,12 @@ export default function App() {
       <div className='loseScreen'>
       {console.log(wordToRender)}
     {checkEnd==="lose" && <h1 style={{color: "red"}}>You Lost</h1>}
-    <div>{wordToRender}</div>
-    <button onClick={restartGame}>Play Again</button>
+    <h2 className='renderWord'>{wordToRender}</h2>
+    <div className='btnsCont'>
+ <button className='gameBtnPlayAgain' onClick={restartSameGame}>Play Again</button>
+  <button className='gameBtnPlayAgain' onClick={setNewWords}>Change Existing Words</button>
+  <button className='gameBtnPlayAgain' onClick={restartGame}>New Game</button>
+ </div>
 
     </div>
   )
