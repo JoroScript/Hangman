@@ -114,10 +114,10 @@ export default function App() {
     setTriedLetters([]);
   }
  function handleInput(event){
-  const cyrillicPattern = /[\u0400-\u04FF]/;
+  const englishPattern = /^[a-zA-Z]+$/;
 
   if(event.key==="Enter"){
-    if(inputValue.length>=3 && ![...inputValue].every(letter=>letter=="" || letter==" ") && inputValue[0]!==" " && !cyrillicPattern.test(inputValue)){
+    if(inputValue.length>=3 && ![...inputValue].every(letter=>letter=="" || letter==" ") && inputValue[0]!==" " && englishPattern.test(inputValue)){
       let correct=true;
       for(let i=1; i<inputValue.length; i++){
         correct = inputValue[i]==" " && inputValue[i]==inputValue[i-1] ? false : true  
