@@ -17,7 +17,7 @@ button:hover{
   transform: scale(1.07);
 }
 .renderWord{
-  font-size: 3em;
+  font-size: 2em;
 }
 .triesLeft{
   content: "";
@@ -45,7 +45,7 @@ h1,h3,h4{
   margin: 0;
   gap: 5px;
   text-shadow: 2px 2px 4px  green;
-  font-size: 25px;
+  font-size: 1.5em;
   color: rgb(230,230,230);
 }
 .wordsStart h5,.wordsStart h2{
@@ -76,7 +76,7 @@ ul{
 ul li{
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 1em;
   transition: transform 0.3s ease;
 }
 ul li::marker{
@@ -122,7 +122,7 @@ ul li:hover{
   grid-template-columns: repeat(13,40px);
   gap: 5px;
   border: 3px solid white;
-  font-size: 16px;
+  font-size: 1em;
   padding: 1em;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,250,0,0.20) 0px -12px 30px, rgba(0, 250, 0, 0.12) 0px 4px 6px, rgba(0, 250, 0, 0.17) 0px 12px 13px, rgba(0, 250, 0, 0.09) 0px -3px 5px;
@@ -137,7 +137,7 @@ ul li:hover{
   font-family: "Barlow Condensed", sans-serif;
   border-radius: 5px;
   border: none;
-  font-size: 25px;
+  font-size: 1.4em;
   font-weight: 500;
 }
 .keysCont button:hover{
@@ -151,11 +151,11 @@ ul li:hover{
 }
 
 span.letterInWord{
-  font-size: 30px;
+  font-size: 1.8em;
   color: #FFF;
 }
 span.notInWord{
-  font-size: 30px;
+  font-size: 1.8em;
   color: red;
   text-decoration: underline;
 
