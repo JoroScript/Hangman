@@ -15,9 +15,20 @@ export default function App() {
   const [gameReset,setGameReset] = useState(0);
   const [wordsArray,setWordsArray] = useState([]);
   const [barColor,setBarColor] = useState(0)
+  const [randomWord,setRandomWord] = useState(false);
 
   // localStorage.setItem("guessedCount",1);
   React.useEffect(()=>{
+    if(randomWord){
+       fetch("https://random-word-api.herokuapp.com/word")
+    .then(res=>res.json())
+    .then(data=>setWordToGuess(data[0].split("").map(letter=>{
+      return {
+        value: letter,
+        isShown: false
+      }
+    })));
+    }
     if(wordsArray.length!==0){
       let randomWordIndex=Math.floor(Math.random()*wordsArray.length);
       setWordToGuess(wordsArray[randomWordIndex].split("").map(letter=>{
@@ -108,6 +119,7 @@ export default function App() {
     setCheckEnd(false);
     setWordsArray([]);
     setBarColor(0);
+    setRandomWord(false);
     setGameStarted(false);
     setTriesLeft(5);
     setWordToGuess("");
@@ -146,7 +158,13 @@ export default function App() {
     setWordToGuess("");
     setTriedLetters([]);
   }
+  function makeRandom(){
+    setRandomWord(true);
+    setGameStarted(true);
+    
+  }
   function setNewWords(){
+    setRandomWord(false);
     setCheckEnd(false);
     setBarColor(0);
     setGameStarted(false);
@@ -176,6 +194,7 @@ export default function App() {
         <h4>At Least 5 Words :)</h4>
           <input value={inputValue} placeholder='Press Enter to Add Word...' onKeyDown={handleInput} onChange={(e)=>setInputValue(e.target.value)}></input>
           <button onClick={checkGameConditions}>Start Game</button>
+          <button onClick={makeRandom}> Random Word</button>
           <div className='wordsStart'>
             <h2>Words</h2>
             <ul>{words}</ul>
