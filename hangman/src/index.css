@@ -1,8 +1,6 @@
 body{
   height: 100vh;
   background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 30%, #2e2e2e 40%, #99ff00 100%);
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +15,7 @@ button:hover{
   transform: scale(1.07);
 }
 .renderWord{
-  font-size: 2em;
+  font-size: 1.6em;
 }
 .triesLeft{
   content: "";
@@ -160,7 +158,10 @@ ul li:hover{
   justify-content: center;
   align-items: center;
   color: white;
-  gap: 15px;
+  gap: 0.5em;
+}
+.container h1{
+  font-size: 1.5em;
 }
 .btnsCont{
   display: flex;
@@ -233,33 +234,75 @@ span.notInWord{
   align-items: center;
   justify-content: center;
 }
-@media only screen and (max-width: 600px) {
+
+@media screen and (max-width: 1100px)  {
   body{
     font-size: 16px;
   }
+  .startCont button{
+    font-size: 1.5em;
+  }
+  .startCont input{
+    font-size: 1.5em;
+  }
   .container{
+    width: 100%;
     gap: 1.5em;
   }
   .keysCont{
-  max-width: 360px;
-
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(13,auto);
     gap: 5px;
     border: 3px solid white;
-    padding: 0.5em;
+    padding: 1em;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,250,0,0.20) 0px -12px 30px, rgba(0, 250, 0, 0.12) 0px 4px 6px, rgba(0, 250, 0, 0.17) 0px 12px 13px, rgba(0, 250, 0, 0.09) 0px -3px 5px;
   }
-  
+  .keysCont button{
+    font-size: 1.2em
+  }
+  .container h1{
+    font-size: 1.7em;
+  }
+  .gameBtnPlayAgain{
+    width: 8em;
+    padding: 0em;
+  }
   
   .btnsCont{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    font-size: 1.5em;
   }
   .wordsStart{
     max-width: 360px;
   }
   
+}
+@media screen and (orientation: landscape) and (max-width: 1100px){
+  body{
+    height: 100vh;
+  }
+  .hangman{
+    width: 100px;
+    height: 100px;
+  }
+  .container{
+    gap: 1em;
+  }
+  .triesLeft{
+    height: 10px;
+  }
+  .btnsCont{
+    flex-direction: row;
+    font-size: 1.1em;
+  }
+  .startCont{
+    gap: 10px;
+  }
+  .container h1{
+    font-size: 1.3em;
+  }
 }

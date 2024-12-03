@@ -208,7 +208,7 @@ export default function App() {
     <>
     <div className="container">
     {checkEnd==="win" && <ConfettiExplosion/>}
-    <h1>Guess The Random Word/Guessed <span style={{fontWeight: "700"}}>{guessed}</span></h1>
+    <h1 style={{fontWeight: "700"}}>Score: {guessed}</h1>
        <h2 className='renderWord'>{wordToRender}</h2>
        <div className={`hangman hangman${triesLeft}`}></div>
              <div className={`triesLeft`} style={{width: `${triesLeft/5*100}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
@@ -218,7 +218,7 @@ export default function App() {
  }
  <div className='btnsCont'>
  <button className='gameBtnPlayAgain' onClick={restartSameGame}>Play Again</button>
-  <button className='gameBtnPlayAgain' onClick={setNewWords}>Change Existing Words</button>
+  <button className='gameBtnPlayAgain' onClick={setNewWords}>Change Words</button>
   <button className='gameBtnPlayAgain' onClick={restartGame}>New Game</button>
  </div>
   
