@@ -250,7 +250,7 @@ span.notInWord{
     gap: 1.5em;
   }
   .keysCont{
-    width: 100%;
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(13,auto);
     gap: 5px;
