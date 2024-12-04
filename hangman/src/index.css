@@ -264,6 +264,7 @@ span.notInWord{
   }
 
   .container{
+    max-width: 1000px;
     margin-inline:auto;
     margin-top: 1em;
     width: 100%;
