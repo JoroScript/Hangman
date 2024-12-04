@@ -205,7 +205,9 @@ ul li:hover{
   font-family: "Barlow Condensed", sans-serif;
   border-radius: 5px;
   border: none;
-  font-size: 1.6em;
+  padding: 0.3em;
+  padding-inline: 0.5em;
+  font-size: 2em;
   font-weight: 500;
 }
 .keysCont button:hover{
@@ -252,6 +254,7 @@ span.notInWord{
 @media screen and (max-width: 1100px)  {
   body{
     font-size: 16px;
+    display: block;
   }
   .startCont button{
     font-size: 1.5em;
@@ -259,7 +262,10 @@ span.notInWord{
   .startCont input{
     font-size: 1.5em;
   }
+
   .container{
+    margin-inline:auto;
+    margin-top: 1em;
     width: 100%;
     gap: 1.5em;
     justify-content: center;
@@ -267,14 +273,14 @@ span.notInWord{
   }
   .keysCont{
     border: 3px solid white;
-    width: 100%;
+    width: 95%;
     text-align: center;
     align-items: center;
     grid-template-columns: repeat(13,auto);
     display: grid;
-    padding: 0;
-    border: none;
+    padding: 0.6em;
     gap: 5px;
+    row-gap: 10px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,250,0,0.20) 0px -12px 30px, rgba(0, 250, 0, 0.12) 0px 4px 6px, rgba(0, 250, 0, 0.17) 0px 12px 13px, rgba(0, 250, 0, 0.09) 0px -3px 5px;
   }
@@ -294,6 +300,10 @@ span.notInWord{
   }
   .wordsStart{
     max-width: 360px;
+  }
+  .keysCont button{
+    padding: 0.2em;
+   font-size: 1.5em; 
   }
   
 }

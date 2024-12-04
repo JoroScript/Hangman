@@ -211,7 +211,7 @@ export default function App() {
     <h1 style={{fontWeight: "700"}}>Score: {guessed}</h1>
        <h2 className='renderWord'>{wordToRender}</h2>
        <div className={`hangman hangman${triesLeft}`}></div>
-             <div className={`triesLeft`} style={{width: `${triesLeft/5*100}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
+             <div className={`triesLeft`} style={{width: `${triesLeft/5*100-5}%`,backgroundColor: `rgb(255,${300-barColor},${300-barColor})`}}></div>
       {!checkEnd &&<div className="keysCont">
         {keysElements}
         </div>
